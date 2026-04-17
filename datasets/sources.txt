@@ -1,0 +1,85 @@
+================================================================================
+FUENTES DE DATASETS DE VIDEO - SISTEMA VAU (CITEP)
+Clasificación por relevancia de entorno y tipo de comportamiento
+================================================================================
+
+--------------------------------------------------------------------------------
+GRUPO 1: RETAIL Y CENTROS COMERCIALES (PRIORIDAD ALTA - "In The Wild")
+--------------------------------------------------------------------------------
+Descripción: Datasets grabados en entornos reales de tiendas y malls. Contienen 
+oclusiones, multitudes y acciones específicas de clientes. Ideales para entrenar 
+el razonamiento (ASK-Hint) sobre anomalías de seguridad.
+
+* POLIMI-ITW-S
+  - Contenido: 22k clips, 37 acciones específicas de centros comerciales.
+  - Comportamiento: Interacciones reales en pasillos y tiendas.
+  - Enlace: https://airlab.deib.polimi.it/polimi-itw-s-a-shopping-mall-dataset-in-the-wild/
+
+* RetailAction (ICCV 2025)
+  - Contenido: 21k videos de retail con múltiples vistas (cámaras de seguridad).
+  - Comportamiento: Acciones de compra, manipulación de productos en estanterías.
+  - Enlace: https://openaccess.thecvf.com/content/ICCV2025W/RetailVision/
+
+* MERL Shopping
+  - Contenido: Acciones de compra en supermercados/malls.
+  - Comportamiento: Foco en la interacción mano-objeto (ideal para detectar robos).
+  - Enlace: https://www.merl.com/research/highlights/merl-shopping-dataset
+
+
+--------------------------------------------------------------------------------
+GRUPO 2: CONTEO Y SEGUIMIENTO DE MULTITUDES (PRIORIDAD MEDIA - Fase 1)
+--------------------------------------------------------------------------------
+Descripción: Útiles para probar la Fase de Percepción (Detección de humanos 
+y bounding boxes) más que para el razonamiento de acciones complejas.
+
+* CUHK Mall Dataset (Fuente directa)
+  - Contenido: Video de cámara de seguridad estática en un mall.
+  - Comportamiento: Seguimiento de trayectorias y conteo de densidad.
+  - Enlace: https://personal.ie.cuhk.edu.hk/~ccloy/downloads_mall_dataset.html
+
+* Mall Dataset (Kaggle - Versión procesada del anterior)
+  - Contenido: Imágenes y anotaciones de coordenadas de personas.
+  - Enlace: https://www.kaggle.com/datasets/chaozhuang/mall-dataset
+
+
+--------------------------------------------------------------------------------
+GRUPO 3: INTERACCIÓN FÍSICA FINA (PRIORIDAD MEDIA-BAJA - Refinamiento)
+--------------------------------------------------------------------------------
+Descripción: No son de seguridad, pero sirven si el modelo tiene problemas para 
+entender las físicas básicas de "agarrar", "soltar" o "esconder" un objeto.
+
+* Something-Something V2
+  - Contenido: 220k clips, 174 interacciones.
+  - Comportamiento: Lógica espacial básica (ej. "poner algo dentro de otra cosa").
+  - Enlace: https://20bn.com/datasets/something-something
+
+
+--------------------------------------------------------------------------------
+GRUPO 4: RECONOCIMIENTO DE ACCIÓN GENERAL (DESCARTADOS / EXCESIVAMENTE PESADOS)
+--------------------------------------------------------------------------------
+Descripción: Son el estándar de la industria académica, pero para un sistema de 
+seguridad en un centro comercial, introducen demasiado ruido semántico (deportes, 
+cocina, tocar instrumentos) y pesan terabytes. NO DESCARGAR PARA ESTE PROYECTO.
+
+* Kinetics-700: 650k clips, 700 clases genéricas.
+  - Enlace: https://deepmind.google/discover/blog/kinetics-moving-the-research-frontier-forward/
+* YouTube-8M: 6M+ videos, 3.8k etiquetas genéricas.
+  - Enlace: https://research.google.com/youtube8m/
+* Action100M: 147M segmentos de acciones procedimentales.
+  - Enlace: https://arxiv.org/abs/2601.10592
+* UCF101: 13k videos, 101 acciones (Antiguo, resoluciones muy bajas).
+  - Enlace: https://www.crcv.ucf.edu/data/UCF101.php
+* HMDB51: 7k videos, 51 acciones genéricas.
+  - Enlace: https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/
+
+
+--------------------------------------------------------------------------------
+GRUPO 5: PERSPECTIVAS NO COMPATIBLES (DESCARTADOS)
+--------------------------------------------------------------------------------
+Descripción: La perspectiva de la cámara no coincide con una cámara de vigilancia 
+(CCTV) fija de tercera persona.
+
+* BDD100K (Cámaras de tablero de autos - Dashcams)
+  - Enlace: https://bdd100k.com/
+* EPIC-Kitchens-100 (Cámaras en primera persona / Egocéntricas cocinando)
+  - Enlace: https://epic-kitchens.github.io/2021

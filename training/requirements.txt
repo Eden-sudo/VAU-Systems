@@ -1,0 +1,8 @@
+transformers
+accelerate
+bitsandbytes
+peft
+datasets
+hf_transfer
+opencv-python
+numpy
