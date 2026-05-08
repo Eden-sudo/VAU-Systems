@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAU-Systems | Centro de Mando Operativo</title>
+    <!-- Tailwind por CDN (lo ideal para prototipado rápido) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <!-- Tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="/dashboard/styles.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-mono min-h-screen flex flex-col p-6">
+
+    <header class="mb-6 border-b border-gray-700 pb-4 flex justify-between items-end">
+        <div>
+            <h1 class="text-3xl font-bold text-blue-400">VAU-Systems</h1>
+            <p class="text-sm text-gray-400">Panel de Control & Visión Desacoplada</p>
+        </div>
+        <div id="conexion-estado" class="px-3 py-1 rounded text-sm font-bold bg-yellow-600/20 text-yellow-500 border border-yellow-600">
+            ESPERANDO CONEXIÓN...
+        </div>
+    </header>
+
+    <!-- Navegación de Pestañas -->
+    <nav class="flex space-x-4 mb-6 border-b border-gray-700">
+        <button id="btn-monitor" class="py-2 px-4 border-b-2 border-blue-500 text-blue-400 font-bold btn-tab" data-target="seccion-monitor">MONITOR EN VIVO</button>
+        <button id="btn-config" class="py-2 px-4 border-b-2 border-transparent text-gray-400 hover:text-white btn-tab" data-target="seccion-config">CONFIGURACIÓN IA</button>
+    </nav>
+
+    <!-- SECCIÓN 1: MONITOR (Visor y Telemetría) -->
+    <div id="seccion-monitor" class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow tab-content">
+        <!-- Visor Táctico -->
+        <div class="lg:col-span-2 flex flex-col space-y-4">
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                <div class="flex justify-between mb-2">
+                    <h2 class="text-lg font-semibold text-gray-200">Visor Táctico (Client-Side Rendering)</h2>
+                    <span class="text-xs bg-green-900 text-green-400 px-2 py-1 rounded">WebRTC + Canvas</span>
+                </div>
+                <div class="visor-container border border-gray-600 shadow-lg">
+                    <video id="video-stream" autoplay playsinline muted loop></video>
+                    <canvas id="capa-dibujo"></canvas>
+                </div>
+            </div>
+            <!-- Controles -->
+            <div class="grid grid-cols-2 gap-4">
+                <button id="btn-iniciar" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded shadow transition-colors border border-blue-400">▶ INICIAR MOTORES</button>
+                <button id="btn-detener" class="bg-red-700 hover:bg-red-600 text-white font-bold py-3 px-4 rounded shadow transition-colors border border-red-500">■ DETENER</button>
+            </div>
+        </div>
+
+        <!-- Telemetría y Alertas -->
+        <div class="flex flex-col space-y-6">
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                <h2 class="text-lg font-semibold mb-3 text-cyan-400">Telemetría Jetson</h2>
+                <div class="space-y-2 text-sm font-mono">
+                    <div class="flex justify-between"><span>Uso CPU:</span> <span id="cpu-uso">--</span></div>
+                    <div class="w-full bg-gray-700 h-2 rounded"><div id="barra-cpu" class="bg-cyan-500 h-2 rounded transition-all duration-300" style="width: 0%"></div></div>
+                    <div class="flex justify-between mt-2"><span>Uso RAM:</span> <span id="ram-uso">--</span></div>
+                    <div class="w-full bg-gray-700 h-2 rounded"><div id="barra-ram" class="bg-purple-500 h-2 rounded transition-all duration-300" style="width: 0%"></div></div>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex-grow flex flex-col">
+                <h2 class="text-lg font-semibold mb-3 text-red-400">Sentencias del Juez (Qwen)</h2>
+                <div class="flex-grow overflow-hidden relative min-h-[200px]">
+                    <ul id="lista-alertas" class="absolute inset-0 overflow-y-auto space-y-2 pr-2 text-sm">
+                        <li class="text-gray-500 italic placeholder-alerta">Esperando inferencia...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: CONFIGURACIÓN -->
+    <div id="seccion-config" class="hidden space-y-6 tab-content">
+        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+            <h2 class="text-xl font-bold text-yellow-500 mb-4">Parámetros del Sabueso (YOLO-World)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Umbral de Confianza (<span id="valor-umbral">0.25</span>)</label>
+                    <input type="range" id="input-umbral" min="0" max="1" step="0.05" value="0.25" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archivo principal de lógica JS -->
+    <script src="/dashboard/app.js"></script>
+</body>
+</html>

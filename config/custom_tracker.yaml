@@ -1,0 +1,24 @@
+# VAU-System Custom BoT-SORT Tracker
+
+tracker_type: botsort
+track_high_thresh: 0.5      
+track_low_thresh: 0.1       
+new_track_thresh: 0.6       
+
+# 1. EL BÚFER DE MEMORIA 
+track_buffer: 60            
+
+# 2. UMBRALES RELAJADOS
+match_thresh: 0.8           
+proximity_thresh: 0.5       
+
+# Compensación de movimiento de cámara
+gmc_method: sparseOptFlow 
+
+# 3. RE-IDENTIFICACIÓN NATIVA
+with_reid: True             
+appearance_thresh: 0.25     
+model: "yolov8n-cls.pt" 
+
+# 4. PARÁMETROS INTERNOS REQUERIDOS
+fuse_score: True            # Fusión de confianza de YOLO con similitud geométrica
