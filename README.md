@@ -45,7 +45,7 @@ flowchart LR
     
     %% SALIDA
     DICT --> HUD["HUD OpenCV / CUDA"]
-
+```
 
 El sistema se divide en tres pilares fundamentales:
 
