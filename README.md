@@ -10,6 +10,7 @@ El núcleo de VAU-Systems está estrictamente desacoplado para garantizar que el
 
 ```mermaid
 flowchart LR
+    %% (flowchart LR
     %% ORQUESTADOR Y PIPELINE
     subgraph Orquestador ["1. Orquestador Asíncrono (asyncio)"]
         direction TB
@@ -43,8 +44,7 @@ flowchart LR
     ENS == "Inyecta Tensor" ==> COLA
     
     %% SALIDA
-    DICT --> HUD["HUD OpenCV / CUDA"]
-```
+    DICT --> HUD["HUD OpenCV / CUDA"])
 
 El sistema se divide en tres pilares fundamentales:
 

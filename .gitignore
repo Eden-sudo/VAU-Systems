@@ -1,10 +1,10 @@
-# Ignorar datos pesados, pero mantener el archivo de fuentes
-datasets/*
-!datasets/sources.txt
+# Ignorar datos pesados en cualquier nivel, pero mantener el archivo de fuentes
+**/datasets/*
+!**/datasets/sources.txt
 
-# Ignorar pesos de modelos, pero mantener la carpeta
-models/*
-!models/.gitkeep
+# Ignorar pesos de modelos en cualquier nivel, pero mantener la carpeta
+**/models/*
+!**/models/.gitkeep
 
 # Entornos y binarios de Python
 __pycache__/

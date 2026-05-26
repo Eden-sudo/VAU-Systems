@@ -1,0 +1,24 @@
+# ==========================================
+# CONFIGURACIÓN MAESTRA VAU-SYSTEMS
+# ==========================================
+
+system:
+  target_device: "cuda"  # Opciones: "cuda" o "cpu"
+  mode: "VAU"
+
+models:
+  base_dir: "models"
+  yolo_model: "yolov8m-worldv2.pt"
+  qwen_gguf: "qwen2-vl-vau-int4.gguf"
+  proyector_gguf: "mmproj-vau-f16.gguf"
+
+camera:
+  max_frames: 60
+  width: 1920
+  height: 1080
+  source: "datasets_test/" # Pon 0 si vas a usar una cámara web USB
+  fps: 30
+
+perception:
+  confidence_threshold: 0.25
+  target_classes: ["person", "handgun", "knife", "backpack", "mask", "balaclava", "crowbar"]
