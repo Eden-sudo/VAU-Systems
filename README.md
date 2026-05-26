@@ -6,7 +6,7 @@ VAU-Systems es una arquitectura de seguridad cognitiva Edge-AI de alto rendimien
 
 ## Arquitectura del Sistema
 
-El núcleo de VAU-Systems está estrictamente desacoplado para garantizar que el renderizado web o los fallos de red nunca bloqueen la inferencia de la GPU. 
+El núcleo de VAU-Systems está estrictamente desacoplado para garantizar que el renderizado web o los fallos de red nunca bloqueen la inferencia de la GPU.
 
 ```mermaid
 flowchart LR
