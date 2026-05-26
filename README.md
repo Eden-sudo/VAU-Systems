@@ -1,18 +1,19 @@
-# 👁️ VAU-Systems (Vision Analytics & Understanding)
+# VAU-Systems (Vision Analytics & Understanding)
 
-VAU-Systems es una arquitectura de seguridad cognitiva *Edge-AI* de alto rendimiento, diseñada para operar en hardware restringido (NVIDIA Jetson Orin Nano). El sistema combina detección de objetos en tiempo real con razonamiento multimodal profundo, operando bajo una filosofía de microservicios asíncronos y procesamiento *Zero-Copy*.
+VAU-Systems es una arquitectura de seguridad cognitiva Edge-AI de alto rendimiento, diseñada para operar en hardware restringido (NVIDIA Jetson Orin Nano). El sistema combina detección de objetos en tiempo real con razonamiento multimodal profundo, operando bajo una filosofía de microservicios asíncronos y procesamiento Zero-Copy.
 
 ---
 
-## 🏗️ Arquitectura del Sistema
+## Arquitectura del Sistema
 
 El núcleo de VAU-Systems está estrictamente desacoplado para garantizar que el renderizado web o los fallos de red nunca bloqueen la inferencia de la GPU. 
 
+```mermaid
 flowchart LR
-    %% (flowchart LR
     %% ORQUESTADOR Y PIPELINE
     subgraph Orquestador ["1. Orquestador Asíncrono (asyncio)"]
         direction TB
+        
         subgraph Task1 ["Hilo Productor (30 FPS)"]
             CAM["cv2.VideoCapture"] --> SAB["YOLO-World + BoT-SORT"]
         end
@@ -43,7 +44,7 @@ flowchart LR
     ENS == "Inyecta Tensor" ==> COLA
     
     %% SALIDA
-    DICT --> HUD["HUD OpenCV / CUDA"])
+    DICT --> HUD["HUD OpenCV / CUDA"]
 
 El sistema se divide en tres pilares fundamentales:
 
