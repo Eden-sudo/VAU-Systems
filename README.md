@@ -24,27 +24,28 @@ flowchart LR
         
         COLA[/"asyncio.Queue (Buffer de Clips)"/]
         
-        Task1 -->|"Produce BBox"| COLA
-        COLA -->|"Consume Tensor 4D"| Task2
+        Task1 -->|Produce BBox| COLA
+        COLA -->|Consume Tensor 4D| Task2
     end
 
     %% GESTOR DE MEMORIA
     subgraph HAL ["2. Hardware Abstraction Layer (HAL)"]
         direction TB
         HW{"platform.machine()"}
-        HW -->|"aarch64 (Jetson)"| VRAM["jetson_utils Zero-Copy"]
-        HW -->|"x86_64 (PC)"| RAM["NumPy Deque en RAM"]
+        HW -->|aarch64 Jetson| VRAM["jetson_utils Zero-Copy"]
+        HW -->|x86_64 PC| RAM["NumPy Deque en RAM"]
         VRAM --> ENS["Generador de Tubo 4D RGB"]
         RAM --> ENS
     end
 
     %% CONEXIONES CRUZADAS
-    CAM -.->|"Frames al Histórico"| HW
-    SAB -.->|"Coordenadas Recorte"| ENS
-    ENS == "Inyecta Tensor" ==> COLA
+    CAM -.->|Frames al Histórico| HW
+    SAB -.->|Coordenadas Recorte| ENS
+    ENS == Inyecta Tensor ==> COLA
     
     %% SALIDA
     DICT --> HUD["HUD OpenCV / CUDA"]
+
 
 El sistema se divide en tres pilares fundamentales:
 
